@@ -57,10 +57,9 @@
 ### <b>DEPLOY TO HEROKU</b>
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)]()
 </div>
-<p align="center">
-<img src="https://user-images.githubusercontent.com/91881550/180365378-91146653-23d6-47c6-ab35-1e9684caeb3c.gif" alt="nz" width="600"/>
-</p>
 
+<p><img align="right" alt="gif" scr="https://a.uguu.se/ovxWgfSe.mp4" width="500" height="320" /></p>
+<div align="center">
 
 <div align="center">
   
