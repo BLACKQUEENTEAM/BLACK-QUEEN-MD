@@ -58,8 +58,9 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)]()
 </div>
 
-<p><img align="right" alt="gif" scr="https://a.uguu.se/ovxWgfSe.mp4" width="500" height="320" /></p>
-<div align="center">
 
-<div align="center">
+
+https://user-images.githubusercontent.com/109587968/180414994-f0d2c239-243d-4bb4-9506-5ba56dfec748.mp4<div align="center">
+
+
   
