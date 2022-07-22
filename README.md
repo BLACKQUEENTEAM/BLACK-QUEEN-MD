@@ -19,14 +19,14 @@
 <p align="center">
 <br>
 <div align="center">
-<a href="https://github.com/CyberKing4">
+<a href="https://github.com/BLACKQUEENTEAM">
 <img src="https://img.shields.io/static/v1?label=Developer&message=blackqueenteam%20&color=purple&style=plastic">
 <a href="http://wa.me//"><img src="https://img.shields.io/badge/Owner-WhatsApp-green">
 <a href="https://t.me/"><img src="https://img.shields.io/badge/Owner-Telegram-blue">
 <a href="https://www.youtube.com/channel/UCRt-7UDMMcfjunuZwZi481Q"><img src="https://img.shields.io/badge/Owner-YouTube-pink">
-<a href="https://github.com/CyberKing4/CYBER-KING-BOT/issues?q=is%3Aopen+is%3Aissue"><img src="https://img.shields.io/github/issues/BLACKQUEENTEAM/BLACK-QUEEN.svg">
-<a href="https://github.com/CyberKing4/CYBER-KING-BOT/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/BLACKQUEENTEAM/BLACK-QUEEN.svg">
-<a href="https://github.com/CyberKing2/CYBER-KING-BOT/edit/main/README.md"><img src="https://badge-size.herokuapp.com/CyberKing4/CYBER-KING-BOT/main/README.md">	
+<a href="https://github.com/BLACKQUEENTEAM/BLACK-QUEEN/issues?q=is%3Aopen+is%3Aissue"><img src="https://img.shields.io/github/issues/BLACKQUEENTEAM/BLACK-QUEEN.svg">
+<a href="https://github.com/BLACKQUEENTEAM/BLACK-QUEEN/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/BLACKQUEENTEAM/BLACK-QUEEN.svg">
+<a href="https://github.com/BLACKQUEENTEAM/BLACK-QUEEN/edit/main/README.md"><img src="https://badge-size.herokuapp.com/CyberKing4/CYBER-KING-BOT/main/README.md">	
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
   
