@@ -125,7 +125,7 @@ let tebaklirik = db.data.game.lirik = []
 let tebaktebakan = db.data.game.tebakan = []
 let vote = db.data.others.vote = []
 
-module.exports = KingmdWH = async (KingmdWH, m, chatUpdate, store) => {
+module.exports = BlackQueenmdWH = async (BlackQueenmdWH, m, chatUpdate, store) => {
     try {
         var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
         var budy = (typeof m.text == 'string' ? m.text : '')
@@ -134,7 +134,7 @@ module.exports = KingmdWH = async (KingmdWH, m, chatUpdate, store) => {
         const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const args = body.trim().split(/ +/).slice(1)
         const pushname = m.pushName || "No Name"
-        const botNumber = await KingmdWH.decodeJid(KingmdWH.user.id)
+        const botNumber = await BlackQueenmdWH.decodeJid(BlackQueenmdWH.user.id)
         const isCreator = [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const itsMe = m.sender == botNumber ? true : false
         const text = q = args.join(" ")
@@ -146,7 +146,7 @@ module.exports = KingmdWH = async (KingmdWH, m, chatUpdate, store) => {
 	    const content = JSON.stringify(mek.message)
 
         //group\\
-        const groupMetadata = m.isGroup ? await KingmdWH.groupMetadata(m.chat).catch(e => {}) : ''
+        const groupMetadata = m.isGroup ? await BlackQueenmdWH.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
         const participants = m.isGroup ? await groupMetadata.participants : ''
         const groupAdmins = m.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
@@ -201,21 +201,21 @@ module.exports = KingmdWH = async (KingmdWH, m, chatUpdate, store) => {
                 
 	//group target \\
 const reply = (teks) => {
-            KingmdWH.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botname}`,"body": ` [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘]`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./KINGMedia/logo.jpeg`),"sourceUrl": "https://telegra.ph/file/24b9b8507613125d34bd1.jpgo"}}}, { quoted: m})
+            BlackQueenmdWH.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botname}`,"body": ` [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘]`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./BlackQueenMedia/logo.jpeg`),"sourceUrl": "https://telegra.ph/file/24b9b8507613125d34bd1.jpgo"}}}, { quoted: m})
         }
         
         const replay = (teks) => {
-            KingmdWH.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botname}`,"body": ` [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘]`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./KINGMedia/logo.jpeg`),"sourceUrl": "https://chat.whatsapp.com/KNXP4fcK8ehJsdPlsM97wr"}}}, { quoted: m})
+            BlackQueenmdWH.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": ` ${global.botname}`,"body": ` [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘]`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./BlackQueenMedia/logo.jpeg`),"sourceUrl": "https://chat.whatsapp.com/KNXP4fcK8ehJsdPlsM97wr"}}}, { quoted: m})
         }
 	
         //Public & Self\\
-        if (!KingmdWH.public) {
+        if (!BlackQueenmdWH.public) {
             if (!m.key.fromMe) return
         }
 
         //Push Message To Console && Auto Read\\
         if (m.message) {
-            KingmdWH.sendReadReceipt(m.chat, m.sender, [m.key.id])
+            BlackQueenmdWH.sendReadReceipt(m.chat, m.sender, [m.key.id])
             console.log(chalk.black(chalk.bgWhite('[ MESSAGE ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> From'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> In'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
 	
@@ -236,7 +236,7 @@ const reply = (teks) => {
 	    let setting = global.db.data.settings[botNumber]
 	    if (new Date() * 1 - setting.status > 1000) {
 		let uptime = await runtime(process.uptime())
-		await KingmdWH.setStatus(`${KingmdWH.user.name} | Runtime : ${runtime(uptime)}`)
+		await BlackQueenmdWH.setStatus(`${BlackQueenmdWH.user.name} | Runtime : ${runtime(uptime)}`)
 		setting.status = new Date() * 1
 	    }
 	}
@@ -246,39 +246,39 @@ const reply = (teks) => {
         if (budy.match(`chat.whatsapp.com`)) {
         reply(`*⚠️「 ANTI LINK 」⚠️*\n\n⌛ You have been detected sending a group link, sorry you will be kicked !👿`)
         if (!isBotAdmins) return reply(`I Am Not An Admin, How Could I Kick Somebody Who Send Link 😒`)
-        let gclink = (`https://chat.whatsapp.com/`+await KingmdWH.groupInviteCode(m.chat))
+        let gclink = (`https://chat.whatsapp.com/`+await BlackQueenmdWH.groupInviteCode(m.chat))
         let isLinkThisGc = new RegExp(gclink, 'i')
         let isgclink = isLinkThisGc.test(m.text)
         if (isgclink) return reply(`Group Is Installed With Anti-Link But I Won't Kick You 😁, Because You Sent This Group Link🤘`)
         if (isAdmins) return reply(`Group Is Installed With Anti-Link But I Won't Kick You 😁, Because You Are An Admin Of The Group❤️`)
         if (isCreator) return reply(`Group Is Installed With Anti-Link But I Won't Kick You 😉, Because You Are My Owner 😘, You Think I Will Betray You Huh🔥`)
-        KingmdWH.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+        BlackQueenmdWH.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
         }
         }
 
         //auto reply 
         for (let anji of setik){
 				if (budy === anji){
-					result = fs.readFileSync(`./KINGMedia/sticker/${anji}.webp`)
-					KingmdWH.sendMessage(m.chat, { sticker: result }, { quoted: m })
+					result = fs.readFileSync(`./BlackQueenMedia/sticker/${anji}.webp`)
+					BlackQueenmdWH.sendMessage(m.chat, { sticker: result }, { quoted: m })
 					}
 			}
 			for (let anju of vien){
 				if (budy === anju){
 					result = fs.readFileSync(`./GojoMedia/vn/${anju}.mp3`)
-					KingmdWH.sendMessage(m.chat, { audio: result, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
+					BlackQueenmdWH.sendMessage(m.chat, { audio: result, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
 					}
 			}
 			for (let anjh of imagi){
 				if (budy === anjh){
-					result = fs.readFileSync(`./KINGMedia/image/${anjh}.jpg`)
-					KingmdWH.sendMessage(m.chat, { image: result }, { quoted: m })
+					result = fs.readFileSync(`./BlackQueenMedia/image/${anjh}.jpg`)
+					BlackQueenmdWH.sendMessage(m.chat, { image: result }, { quoted: m })
 					}
 			}
 					for (let anjh of videox){
 				if (budy === anjh){
 					result = fs.readFileSync(`./GojoMedia/vid/${anjh}.mp4`)
-					KingmdWH.sendMessage(m.chat, { video: result }, { quoted: m })
+					BlackQueenmdWH.sendMessage(m.chat, { video: result }, { quoted: m })
 					}
 				  }
 
@@ -298,10 +298,10 @@ const reply = (teks) => {
         let hash = global.db.data.sticker[m.msg.fileSha256.toString('base64')]
         let { text, mentionedJid } = hash
         let messages = await generateWAMessage(m.chat, { text: text, mentions: mentionedJid }, {
-            userJid: KingmdWH.user.id,
+            userJid: BlackQueenmdWH.user.id,
             quoted: m.quoted && m.quoted.fakeObj
         })
-        messages.key.fromMe = areJidsSameUser(m.sender, KingmdWH.user.id)
+        messages.key.fromMe = areJidsSameUser(m.sender, BlackQueenmdWH.user.id)
         messages.key.id = m.key.id
         messages.pushName = m.pushName
         if (m.isGroup) messages.participant = m.sender
@@ -310,7 +310,7 @@ const reply = (teks) => {
             messages: [proto.WebMessageInfo.fromObject(messages)],
             type: 'append'
         }
-        KingmdWH.ev.emit('messages.upsert', msg)
+        BlackQueenmdWH.ev.emit('messages.upsert', msg)
         }
 	    
 	if (('family100'+m.chat in _family100) && isCmd) {
@@ -331,7 +331,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
         return isSurender || room.terjawab[index] ? `(${index + 1}) ${jawaban} ${room.terjawab[index] ? '@' + room.terjawab[index].split('@')[0] : ''}`.trim() : false
     }).filter(v => v).join('\n')}
     ${isSurender ? '' : `Perfect Player`}`.trim()
-            KingmdWH.sendText(m.chat, caption, m, { contextInfo: { mentionedJid: parseMention(caption) }}).then(mes => { return _family100['family100'+m.chat].pesan = mesg }).catch(_ => _)
+            BlackQueenmdWH.sendText(m.chat, caption, m, { contextInfo: { mentionedJid: parseMention(caption) }}).then(mes => { return _family100['family100'+m.chat].pesan = mesg }).catch(_ => _)
             if (isWin || isSurender) delete _family100['family100'+m.chat]
         }
 
@@ -339,7 +339,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaklagu[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await KingmdWH.sendButtonText(m.chat, [{ buttonId: 'guess song', buttonText: { displayText: 'Guess The Song' }, type: 1 }], `🎮 Guess The Music 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, KingmdWH.user.name, m)
+                await BlackQueenmdWH.sendButtonText(m.chat, [{ buttonId: 'guess song', buttonText: { displayText: 'Guess The Song' }, type: 1 }], `🎮 Guess The Music 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, BlackQueenmdWH.user.name, m)
                 delete tebaklagu[m.sender.split('@')[0]]
             } else reply('*Wrong Answer!*')
         }
@@ -357,7 +357,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakgambar[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await KingmdWH.sendButtonText(m.chat, [{ buttonId: 'guess picture', buttonText: { displayText: 'Guess The Picture' }, type: 1 }], `🎮 Guess The Picture 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, KingmdWH.user.name, m)
+                await BlackQueenmdWH.sendButtonText(m.chat, [{ buttonId: 'guess picture', buttonText: { displayText: 'Guess The Picture' }, type: 1 }], `🎮 Guess The Picture 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, BlackQueenmdWH.user.name, m)
                 delete tebakgambar[m.sender.split('@')[0]]
             } else reply('*Wrong Answer!*')
         }
@@ -366,7 +366,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakkata[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await KingmdWH.sendButtonText(m.chat, [{ buttonId: 'guess word', buttonText: { displayText: 'Guess The Word' }, type: 1 }], `🎮 Guess The Word 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, KingmdWH.user.name, m)
+                await BlackQueenmdWH.sendButtonText(m.chat, [{ buttonId: 'guess word', buttonText: { displayText: 'Guess The Word' }, type: 1 }], `🎮 Guess The Word 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, BlackQueenmdWH.user.name, m)
                 delete tebakkata[m.sender.split('@')[0]]
             } else reply('*Wrong Answer!*')
         }
@@ -376,7 +376,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             jawaban = caklontong[m.sender.split('@')[0]]
 	    deskripsi = caklontong_desk[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await KingmdWH.sendButtonText(m.chat, [{ buttonId: 'guess blank', buttonText: { displayText: 'Guess The Blank' }, type: 1 }], `🎮 Guess The Blank 🎮\n\nCorrect Answer \n*${deskripsi}*\n\nWant To Play Again? Press The Button Below`, KingmdWH.user.name, m)
+                await BlackQueenmdWH.sendButtonText(m.chat, [{ buttonId: 'guess blank', buttonText: { displayText: 'Guess The Blank' }, type: 1 }], `🎮 Guess The Blank 🎮\n\nCorrect Answer \n*${deskripsi}*\n\nWant To Play Again? Press The Button Below`, BlackQueenmdWH.user.name, m)
                 delete caklontong[m.sender.split('@')[0]]
 		delete caklontong_desk[m.sender.split('@')[0]]
             } else reply('*Wrong Answer!*')
@@ -386,7 +386,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebakkalimat[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await KingmdWH.sendButtonText(m.chat, [{ buttonId: 'guess sentence', buttonText: { displayText: 'Guess The Sentence' }, type: 1 }], `🎮 Guess The Sentence 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, KingmdWH.user.name, m)
+                await BlackQueenmdWH.sendButtonText(m.chat, [{ buttonId: 'guess sentence', buttonText: { displayText: 'Guess The Sentence' }, type: 1 }], `🎮 Guess The Sentence 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, BlackQueenmdWH.user.name, m)
                 delete tebakkalimat[m.sender.split('@')[0]]
             } else reply('*Wrong Answer!*')
         }
@@ -395,7 +395,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaklirik[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await KingmdWH.sendButtonText(m.chat, [{ buttonId: 'guess lyrics', buttonText: { displayText: 'Guess The Lyrics' }, type: 1 }], `🎮 Guess The Lyrics 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, KingmdWH.user.name, m)
+                await BlackQueenmdWH.sendButtonText(m.chat, [{ buttonId: 'guess lyrics', buttonText: { displayText: 'Guess The Lyrics' }, type: 1 }], `🎮 Guess The Lyrics 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, BlackQueenmdWH.user.name, m)
                 delete tebaklirik[m.sender.split('@')[0]]
             } else reply('*Wrong Answer!*')
         }
@@ -404,7 +404,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = tebaktebakan[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await KingmdWH.sendButtonText(m.chat, [{ buttonId: 'guess riddle', buttonText: { displayText: 'Guess The Riddle' }, type: 1 }], `🎮 Guess The Riddle 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, KingmdWH.user.name, m)
+                await BlackQueenmdWH.sendButtonText(m.chat, [{ buttonId: 'guess riddle', buttonText: { displayText: 'Guess The Riddle' }, type: 1 }], `🎮 Guess The Riddle 🎮\n\nCorrect Answer \n\nWant To Play Again? Press The Button Below`, BlackQueenmdWH.user.name, m)
                 delete tebaktebakan[m.sender.split('@')[0]]
             } else reply('*Wrong Answer!*')
         }
@@ -467,8 +467,8 @@ ${isWin ? `@${winner.split('@')[0]} Won!` : isTie ? `Game Over` : `Turn ${['❌'
 Typed *surrender* to surrender and admited defeat`
 	    if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
 	    room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
-	    if (room.x !== room.o) await KingmdWH.sendText(room.x, str, m, { mentions: parseMention(str) } )
-	    await KingmdWH.sendText(room.o, str, m, { mentions: parseMention(str) } )
+	    if (room.x !== room.o) await BlackQueenmdWH.sendText(room.x, str, m, { mentions: parseMention(str) } )
+	    await BlackQueenmdWH.sendText(room.o, str, m, { mentions: parseMention(str) } )
 	    if (isTie || isWin) {
 	    delete this.game[room.id]
 	    }
@@ -482,7 +482,7 @@ Typed *surrender* to surrender and admited defeat`
 	    let tie = false
 	    if (m.sender == roof.p2 && /^(acc(ept)?|accept|yes|okay?|reject|no|later|nope(k.)?yes|y)/i.test(m.text) && m.isGroup && roof.status == 'wait') {
 	    if (/^(reject|no|later|n|nope(k.)?yes)/i.test(m.text)) {
-	    KingmdWH.sendTextWithMentions(m.chat, `@${roof.p2.split`@`[0]} Refuse Suit, Suit Canceled`, m)
+	    BlackQueenmdWH.sendTextWithMentions(m.chat, `@${roof.p2.split`@`[0]} Refuse Suit, Suit Canceled`, m)
 	    delete this.suit[roof.id]
 	    return !0
 	    }
@@ -490,20 +490,20 @@ Typed *surrender* to surrender and admited defeat`
 	    roof.asal = m.chat
 	    clearTimeout(roof.waktu)
 	    //delete roof[roof.id].waktu
-	    KingmdWH.sendText(m.chat, `Suit Has Been Sent To Chat
+	    BlackQueenmdWH.sendText(m.chat, `Suit Has Been Sent To Chat
 
 @${roof.p.split`@`[0]} dan 
 @${roof.p2.split`@`[0]}
 
 Please Choose A Suit In The Respective Chat"
 Click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] })
-	    if (!roof.pilih) KingmdWH.sendText(roof.p, `Please Select \n\Rock🗿\nPaper📄\nScissors✂️`, m)
-	    if (!roof.pilih2) KingmdWH.sendText(roof.p2, `Please Select \n\nRock🗿\nPaper📄\nScissors✂️`, m)
+	    if (!roof.pilih) BlackQueenmdWH.sendText(roof.p, `Please Select \n\Rock🗿\nPaper📄\nScissors✂️`, m)
+	    if (!roof.pilih2) BlackQueenmdWH.sendText(roof.p2, `Please Select \n\nRock🗿\nPaper📄\nScissors✂️`, m)
 	    roof.waktu_milih = setTimeout(() => {
-	    if (!roof.pilih && !roof.pilih2) KingmdWH.sendText(m.chat, `Both Players Don't Want To Play,\nSuit Canceled`)
+	    if (!roof.pilih && !roof.pilih2) BlackQueenmdWH.sendText(m.chat, `Both Players Don't Want To Play,\nSuit Canceled`)
 	    else if (!roof.pilih || !roof.pilih2) {
 	    win = !roof.pilih ? roof.p2 : roof.p
-	    KingmdWH.sendTextWithMentions(m.chat, `@${(roof.pilih ? roof.p2 : roof.p).split`@`[0]} Didn't Choose Suit, Game Over!`, m)
+	    BlackQueenmdWH.sendTextWithMentions(m.chat, `@${(roof.pilih ? roof.p2 : roof.p).split`@`[0]} Didn't Choose Suit, Game Over!`, m)
 	    }
 	    delete this.suit[roof.id]
 	    return !0
@@ -519,13 +519,13 @@ Click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] 
 	    roof.pilih = reg.exec(m.text.toLowerCase())[0]
 	    roof.text = m.text
 	    reply(`You Have Chosen ${m.text} ${!roof.pilih2 ? `\n\nWaiting For The Opponent To Choose` : ''}`)
-	    if (!roof.pilih2) KingmdWH.sendText(roof.p2, '_The Opponent Has Chosen_\nNow It Is Your Turn', 0)
+	    if (!roof.pilih2) BlackQueenmdWH.sendText(roof.p2, '_The Opponent Has Chosen_\nNow It Is Your Turn', 0)
 	    }
 	    if (jwb2 && reg.test(m.text) && !roof.pilih2 && !m.isGroup) {
 	    roof.pilih2 = reg.exec(m.text.toLowerCase())[0]
 	    roof.text2 = m.text
 	    reply(`You Have Chosen ${m.text} ${!roof.pilih ? `\n\nWaiting For The Opponent To Choose` : ''}`)
-	    if (!roof.pilih) KingmdWH.sendText(roof.p, '_The Opponent Has Chosen_\nNow It Is Your Turn', 0)
+	    if (!roof.pilih) BlackQueenmdWH.sendText(roof.p, '_The Opponent Has Chosen_\nNow It Is Your Turn', 0)
 	    }
 	    let stage = roof.pilih
 	    let stage2 = roof.pilih2
@@ -538,7 +538,7 @@ Click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] 
 	    else if (k.test(stage) && b.test(stage2)) win = roof.p
 	    else if (k.test(stage) && g.test(stage2)) win = roof.p2
 	    else if (stage == stage2) tie = true
-	    KingmdWH.sendText(roof.asal, `_*Suit Results*_${tie ? '\nSERIES' : ''}
+	    BlackQueenmdWH.sendText(roof.asal, `_*Suit Results*_${tie ? '\nSERIES' : ''}
 
 @${roof.p.split`@`[0]} (${roof.text}) ${tie ? '' : roof.p == win ? ` Win \n` : ` Lost \n`}
 @${roof.p2.split`@`[0]} (${roof.text2}) ${tie ? '' : roof.p2 == win ? ` Win \n` : ` Lost \n`}
@@ -621,8 +621,8 @@ ${arr.slice(6).join('')}
 Waiting @${room.game.currentTurn.split('@')[0]}
 
 Type *surrender* to surrender and admit defeat`
-            if (room.x !== room.o) await KingmdWH.sendText(room.x, str, m, { mentions: parseMention(str) } )
-            await KingmdWH.sendText(room.o, str, m, { mentions: parseMention(str) } )
+            if (room.x !== room.o) await BlackQueenmdWH.sendText(room.x, str, m, { mentions: parseMention(str) } )
+            await BlackQueenmdWH.sendText(room.o, str, m, { mentions: parseMention(str) } )
             } else {
             room = {
             id: 'tictactoe-' + (+new Date),
@@ -642,7 +642,7 @@ Type *surrender* to surrender and admit defeat`
             try {
             if (this.game) {
             delete this.game
-            KingmdWH.sendText(m.chat, `Successfully Deleted The TicTacToe Session`, m)
+            BlackQueenmdWH.sendText(m.chat, `Successfully Deleted The TicTacToe Session`, m)
             } else if (!this.game) {
             reply(`TicTacToe🎮 Session Does Not Exist`)
             } else reply('?')
@@ -655,19 +655,19 @@ Type *surrender* to surrender and admit defeat`
                 if (!isCreator) return replay(`${mess.owner}`)
                 if (!q) return replay(`Option : 1. mute\n2. unmute\n3. archive\n4. unarchive\n5. read\n6. unread\n7. delete`)
                 if (args[0] === 'mute') {
-                    KingmdWH.chatModify({ mute: 'Infinity' }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    BlackQueenmdWH.chatModify({ mute: 'Infinity' }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'unmute') {
-                    KingmdWH.chatModify({ mute: null }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    BlackQueenmdWH.chatModify({ mute: null }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'archive') {
-                    KingmdWH.chatModify({  archive: true }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    BlackQueenmdWH.chatModify({  archive: true }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'unarchive') {
-                    KingmdWH.chatModify({ archive: false }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    BlackQueenmdWH.chatModify({ archive: false }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'read') {
-                    KingmdWH.chatModify({ markRead: true }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    BlackQueenmdWH.chatModify({ markRead: true }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'unread') {
-                    KingmdWH.chatModify({ markRead: false }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    BlackQueenmdWH.chatModify({ markRead: false }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'delete') {
-                    KingmdWH.chatModify({ clear: { message: { id: m.quoted.id, fromMe: true }} }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                    BlackQueenmdWH.chatModify({ clear: { message: { id: m.quoted.id, fromMe: true }} }, m.chat, []).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 }
             }
             break
@@ -680,7 +680,7 @@ Type *surrender* to surrender and admit defeat`
                         key: { remoteJid: m.chat, fromMe: true, id: quoted.id }
                     }
                 }
-                KingmdWH.sendMessage(m.chat, reactionMessage)
+                BlackQueenmdWH.sendMessage(m.chat, reactionMessage)
             }
 					break
             case 'join': {
@@ -689,12 +689,12 @@ Type *surrender* to surrender and admit defeat`
                 if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return replay(`Invalid Link!`)
                 reply(mess.wait)
                 let result = args[0].split('https://chat.whatsapp.com/')[1]
-                await KingmdWH.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                await BlackQueenmdWH.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
             }
             break
             case 'leave': case 'kickme': case 'left': {
                 if (!isCreator) return replay(`${mess.owner}`)
-                await KingmdWH.groupLeave(m.chat).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                await BlackQueenmdWH.groupLeave(m.chat).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
             }
             break
             case 'setexif': {
@@ -710,7 +710,7 @@ Type *surrender* to surrender and admit defeat`
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) return replay(`${mess.admin}`)
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await KingmdWH.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await BlackQueenmdWH.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
 	case 'add': {
@@ -718,7 +718,7 @@ Type *surrender* to surrender and admit defeat`
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) return replay(`${mess.admin}`)
 		let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await KingmdWH.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await BlackQueenmdWH.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
 	case 'promote': {
@@ -726,7 +726,7 @@ Type *surrender* to surrender and admit defeat`
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) return replay(`${mess.admin}`)
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await KingmdWH.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await BlackQueenmdWH.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
 	case 'demote': {
@@ -734,19 +734,19 @@ Type *surrender* to surrender and admit defeat`
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) return replay(`${mess.admin}`)
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await KingmdWH.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await BlackQueenmdWH.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
         case 'block': {
 		if (!isCreator) return replay(`${mess.owner}`)
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await KingmdWH.updateBlockStatus(users, 'block').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await BlackQueenmdWH.updateBlockStatus(users, 'block').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
         case 'unblock': {
 		if (!isCreator) return replay(`${mess.owner}`)
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await KingmdWH.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+		await BlackQueenmdWH.updateBlockStatus(users, 'unblock').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
 	break
 	    case 'setname': case 'setgcname': case 'setsubject': {
@@ -754,7 +754,7 @@ Type *surrender* to surrender and admit defeat`
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) replay(`${mess.admin}`)
                 if (!text) replay(`Where Is The Text?`)
-                await KingmdWH.groupUpdateSubject(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
+                await BlackQueenmdWH.groupUpdateSubject(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
             }
             break
           case 'setdesc': case 'setdesk': {
@@ -762,7 +762,7 @@ Type *surrender* to surrender and admit defeat`
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) replay(`${mess.admin}`)
                 if (!text) replay(`Where Is The Text?`)
-                await KingmdWH.groupUpdateDescription(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
+                await BlackQueenmdWH.groupUpdateDescription(m.chat, text).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
             }
             break
           case 'setbotpp': {
@@ -770,8 +770,8 @@ Type *surrender* to surrender and admit defeat`
                 if (!quoted) return replay(`Send/Reply Image With Caption ${prefix + command}`)
                 if (!/image/.test(mime)) return replay(`Send/Reply Image With Caption ${prefix + command}`)
                 if (/webp/.test(mime)) return replay(`Send/Reply Image With Caption ${prefix + command}`)
-                let media = await KingmdWH.downloadAndSaveMediaMessage(quoted)
-                await KingmdWH.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
+                let media = await BlackQueenmdWH.downloadAndSaveMediaMessage(quoted)
+                await BlackQueenmdWH.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.unlinkSync(media))
                 reply(mess.success)
                 }
                 break
@@ -781,8 +781,8 @@ Type *surrender* to surrender and admit defeat`
                 if (!quoted) return replay(`Send/Reply Image With Caption ${prefix + command}`)
                 if (!/image/.test(mime)) return replay(`Send/Reply Image With Caption ${prefix + command}`)
                 if (/webp/.test(mime)) return replay(`Send/Reply Image With Caption ${prefix + command}`)
-                let media = await KingmdWH.downloadAndSaveMediaMessage(quoted)
-                await KingmdWH.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
+                let media = await BlackQueenmdWH.downloadAndSaveMediaMessage(quoted)
+                await BlackQueenmdWH.updateProfilePicture(m.chat, { url: media }).catch((err) => fs.unlinkSync(media))
                 reply(mess.success)
                 }
                 break
@@ -803,13 +803,13 @@ Type *surrender* to surrender and admit defeat`
                 if (/tupai/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
                 if (/audio/.test(mime)) {
                 reply(mess.wait)
-                let media = await KingmdWH.downloadAndSaveMediaMessage(quoted)
+                let media = await BlackQueenmdWH.downloadAndSaveMediaMessage(quoted)
                 let ran = getRandom('.mp3')
                 exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
                 fs.unlinkSync(media)
                 if (err) return reply(err)
                 let buff = fs.readFileSync(ran)
-                KingmdWH.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
+                BlackQueenmdWH.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
                 fs.unlinkSync(ran)
                 })
                 } else reply(`Reply To The Audio You Want To Change With Caption *${prefix + command}*`)
@@ -833,14 +833,14 @@ let teks = `
                 for (let mem of participants) {
                 teks += `│🔥 @${mem.id.split('@')[0]}\n`
                 }
-                KingmdWH.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
                 }
                 break
                 case 'hidetag': case 'tag': {
             if (!m.isGroup) return replay(`${mess.group}`)
             if (!isBotAdmins) return replay(`${mess.botAdmin}`)
             if (!isAdmins) return replay(`${mess.admin}`)
-            KingmdWH.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
+            BlackQueenmdWH.sendMessage(m.chat, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
             }
             break
 	    case 'style': case 'styletext': {
@@ -889,11 +889,11 @@ let buttonsVote = [
 
             let buttonMessageVote = {
                 text: teks_vote,
-                footer: KingmdWH.user.name,
+                footer: BlackQueenmdWH.user.name,
                 buttons: buttonsVote,
                 headerType: 1
             }
-            KingmdWH.sendMessage(m.chat, buttonMessageVote)
+            BlackQueenmdWH.sendMessage(m.chat, buttonMessageVote)
 	    }
             break
                case 'upvote': {
@@ -930,12 +930,12 @@ ${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')
 
             let buttonMessageUpvote = {
                 text: teks_vote,
-                footer: KingmdWH.user.name,
+                footer: BlackQueenmdWH.user.name,
                 buttons: buttonsUpvote,
                 headerType: 1,
                 mentions: menvote
              }
-            KingmdWH.sendMessage(m.chat, buttonMessageUpvote)
+            BlackQueenmdWH.sendMessage(m.chat, buttonMessageUpvote)
 	    }
              break
                 case 'devote': {
@@ -972,12 +972,12 @@ ${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')
 
             let buttonMessageDevote = {
                 text: teks_vote,
-                footer: KingmdWH.user.name,
+                footer: BlackQueenmdWH.user.name,
                 buttons: buttonsDevote,
                 headerType: 1,
                 mentions: menvote
             }
-            KingmdWH.sendMessage(m.chat, buttonMessageDevote)
+            BlackQueenmdWH.sendMessage(m.chat, buttonMessageDevote)
 	}
             break
                  
@@ -1005,9 +1005,9 @@ ${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')
 *${prefix}delvote* - To Delete Vote Session
 
 
-©${KingmdWH.user.id}
+©${BlackQueenmdWH.user.id}
 `
-KingmdWH.sendTextWithMentions(m.chat, teks_vote, m)
+BlackQueenmdWH.sendTextWithMentions(m.chat, teks_vote, m)
 break
 		case 'deletevote': case'delvote': case 'hapusvote': {
             if (!m.isGroup) return replay(`${mess.group}`)
@@ -1021,15 +1021,15 @@ break
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) return replay(`${mess.admin}`)
                 if (args[0] === 'close'){
-                    await KingmdWH.groupSettingUpdate(m.chat, 'announcement').then((res) => reply('```🔇 Group chat has been muted!```')).catch((err) => reply(jsonformat(err)))
+                    await BlackQueenmdWH.groupSettingUpdate(m.chat, 'announcement').then((res) => reply('```🔇 Group chat has been muted!```')).catch((err) => reply(jsonformat(err)))
                 } else if (args[0] === 'open'){
-                    await KingmdWH.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply('```🔊 Group chat has unmuted!```')).catch((err) => reply(jsonformat(err)))
+                    await BlackQueenmdWH.groupSettingUpdate(m.chat, 'not_announcement').then((res) => reply('```🔊 Group chat has unmuted!```')).catch((err) => reply(jsonformat(err)))
                 } else {
                 let buttons = [
                         { buttonId: 'group open', buttonText: { displayText: '🔊 UNMUTE 🔊' }, type: 1 },
                         { buttonId: 'group close', buttonText: { displayText: '🔇 MUTE 🔇' }, type: 1 }
                     ]
-                    await KingmdWH.sendButtonText(m.chat, buttons, `Group Mode`, KingmdWH.user.name, m)
+                    await BlackQueenmdWH.sendButtonText(m.chat, buttons, `Group Mode`, BlackQueenmdWH.user.name, m)
 
              }
             }
@@ -1039,15 +1039,15 @@ break
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) return replay(`${mess.admin}`)
              if (args[0] === 'open'){
-                await KingmdWH.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(`Successfully Opened Edit Group Info`)).catch((err) => reply(jsonformat(err)))
+                await BlackQueenmdWH.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(`Successfully Opened Edit Group Info`)).catch((err) => reply(jsonformat(err)))
              } else if (args[0] === 'close'){
-                await KingmdWH.groupSettingUpdate(m.chat, 'locked').then((res) => reply(`Successfully Closed Edit Group Info`)).catch((err) => reply(jsonformat(err)))
+                await BlackQueenmdWH.groupSettingUpdate(m.chat, 'locked').then((res) => reply(`Successfully Closed Edit Group Info`)).catch((err) => reply(jsonformat(err)))
              } else {
              let buttons = [
                         { buttonId: 'editinfo open', buttonText: { displayText: 'Open' }, type: 1 },
                         { buttonId: 'editinfo close', buttonText: { displayText: 'Close' }, type: 1 }
                     ]
-                    await KingmdWH.sendButtonText(m.chat, buttons, `Mode Edit Info`, KingmdWH.user.name, m)
+                    await BlackQueenmdWH.sendButtonText(m.chat, buttons, `Mode Edit Info`, BlackQueenmdWH.user.name, m)
 
             }
             }
@@ -1069,7 +1069,7 @@ break
                         { buttonId: 'antilink on', buttonText: { displayText: 'ACTIVE' }, type: 1 },
                         { buttonId: 'antilink off', buttonText: { displayText: 'DEACTIVE' }, type: 1 }
                     ]
-                    await KingmdWH.sendButtonText(m.chat, buttons, `Antilink Mode`, KingmdWH.user.name, m)
+                    await BlackQueenmdWH.sendButtonText(m.chat, buttons, `Antilink Mode`, BlackQueenmdWH.user.name, m)
                 }
              }
              break
@@ -1080,37 +1080,37 @@ break
                 if (args[0] === "on") {
                 if (db.data.chats[m.chat].mute) return reply(`Previously Active`)
                 db.data.chats[m.chat].mute = true
-                reply(`${KingmdWH.user.name} Has Been Muted In This Group !`)
+                reply(`${BlackQueenmdWH.user.name} Has Been Muted In This Group !`)
                 } else if (args[0] === "off") {
                 if (!db.data.chats[m.chat].mute) return reply(`Previously Inactive`)
                 db.data.chats[m.chat].mute = false
-                reply(`${KingmdWH.user.name} Has Been Unmuted In This Group!`)
+                reply(`${BlackQueenmdWH.user.name} Has Been Unmuted In This Group!`)
                 } else {
                  let buttons = [
                         { buttonId: 'mute on', buttonText: { displayText: 'On' }, type: 1 },
                         { buttonId: 'mute off', buttonText: { displayText: 'Off' }, type: 1 }
                     ]
-                    await KingmdWH.sendButtonText(m.chat, buttons, `Mute Bot`, KingmdWH.user.name, m)
+                    await BlackQueenmdWH.sendButtonText(m.chat, buttons, `Mute Bot`, BlackQueenmdWH.user.name, m)
                 }
              }
              break
             case 'linkgroup': case 'linkgc': case 'gclink': case 'grouplink': case 'invite' :{
                 if (!m.isGroup) return replay(`${mess.group}`)
-                let response = await KingmdWH.groupInviteCode(m.chat)
-                KingmdWH.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\n${groupMetadata.subject} Group Link`, m, { detectLink: true })
+                let response = await BlackQueenmdWH.groupInviteCode(m.chat)
+                BlackQueenmdWH.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\n${groupMetadata.subject} Group Link`, m, { detectLink: true })
             }
             break
             case 'delete': case 'del': {
                 if (!m.quoted) reply(false)
                 let { chat, fromMe, id, isBaileys } = m.quoted
                 if (!isBaileys) return replay(`The Message Was Not Sent By A Bot!`)
-                KingmdWH.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
+                BlackQueenmdWH.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
             }
             break
             case 'bcgc': case 'bcgroup': {
                 if (!isCreator) return replay(`${mess.owner}`)
                 if (!text) return replay(`Where Is The Text?\n\nExample : ${prefix + command} Nexus Handsome`)
-                let getGroups = await KingmdWH.groupFetchAllParticipating()
+                let getGroups = await BlackQueenmdWH.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                 let anu = groups.map(v => v.id)
                 reply(`Sent Broadcast To ${anu.length} Group Chat, Finish Time ${anu.length * 1.5} Seconds`)
@@ -1138,7 +1138,7 @@ break
                                 }
                             }]
                       let txt = `「 KING BOT HERE 」\n\n${text}`
-                      KingmdWH.send5ButImg(i, txt, KingmdWH.user.name, global.thumb, btn)
+                      BlackQueenmdWH.send5ButImg(i, txt, BlackQueenmdWH.user.name, global.thumb, btn)
                     }
                 reply(`Successful Sending Broadcast To ${anu.length} Group(s)`)
             }
@@ -1172,7 +1172,7 @@ break
                                 }
                             }]
                       let txt = `「 KING-BOT HERE 」\n\n${text}`
-                      KingmdWH.send5ButImg(yoi, txt, KingmdWH.user.name, global.thumb, btn)
+                      BlackQueenmdWH.send5ButImg(yoi, txt, BlackQueenmdWH.user.name, global.thumb, btn)
 		}
 		reply('Broadcast Success')
             }
@@ -1189,12 +1189,12 @@ break
                     teks += `🔥 @${i.userJid.split('@')[0]}\n`
                     teks += ` ┗━🔥 *Time :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} 🔥 *Status :* ${read ? 'Read' : 'Sent'}\n\n`
                 }
-                KingmdWH.sendTextWithMentions(m.chat, teks, m)
+                BlackQueenmdWH.sendTextWithMentions(m.chat, teks, m)
             }
             break
             case 'q': case 'quoted': {
 		if (!m.quoted) return reply('Reply Message!!')
-		let wokwol = await KingmdWH.serializeM(await m.getQuotedObj())
+		let wokwol = await BlackQueenmdWH.serializeM(await m.getQuotedObj())
 		if (!wokwol.quoted) return reply('The Message You Replied To Does Not Contain A Reply')
 		await wokwol.quoted.copyNForward(m.chat, true)
             }
@@ -1206,17 +1206,17 @@ break
                      let nama = store.messages[i].array[0].pushName
                      teks += `💫 *Name :* ${nama}\n💫 *User :* @${i.split('@')[0]}\n💫 *Chat :* https://wa.me/${i.split('@')[0]}\n\n────────────────────────\n\n`
                  }
-                 KingmdWH.sendTextWithMentions(m.chat, teks, m)
+                 BlackQueenmdWH.sendTextWithMentions(m.chat, teks, m)
              }
              break
                 case 'listgc': case 'gclist': {
                  let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
                  let teks = `⬣ *GROUP CHAT LIST*\n\nTotal Group : ${anu.length} Group\n\n`
                  for (let i of anu) {
-                     let metadata = await KingmdWH.groupMetadata(i)
+                     let metadata = await BlackQueenmdWH.groupMetadata(i)
                      teks += `💫 *Name :* ${metadata.subject}\n💫 *Owner :* @${metadata.owner.split('@')[0]}\n💫 *ID :* ${metadata.id}\n💫 *Made :* ${moment(metadata.creation * 1000).tz('Asia/Kolkata').format('DD/MM/YYYY HH:mm:ss')}\n💫 *Member :* ${metadata.participants.length}\n\n────────────────────────\n\n`
                  }
-                 KingmdWH.sendTextWithMentions(m.chat, teks, m)
+                 BlackQueenmdWH.sendTextWithMentions(m.chat, teks, m)
              }
              break
             case 'sticker': case 's': case 'stickergif': case 'sgif': {
@@ -1224,12 +1224,12 @@ break
             reply(mess.wait)
                     if (/image/.test(mime)) {
                 let media = await quoted.download()
-                let encmedia = await KingmdWH.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+                let encmedia = await BlackQueenmdWH.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
                 await fs.unlinkSync(encmedia)
             } else if (/video/.test(mime)) {
                 if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 Seconds!')
                 let media = await quoted.download()
-                let encmedia = await KingmdWH.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+                let encmedia = await BlackQueenmdWH.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
                 await fs.unlinkSync(encmedia)
             } else {
                 reply(`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`)
@@ -1257,7 +1257,7 @@ break
 		let [emoji1, emoji2] = text.split`+`
 		let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 		for (let res of anu.results) {
-		    let encmedia = await KingmdWH.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+		    let encmedia = await BlackQueenmdWH.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
 		    await fs.unlinkSync(encmedia)
 		}
 	    }
@@ -1266,13 +1266,13 @@ break
                 if (!quoted) return reply(`Reply Image`)
                 if (!/webp/.test(mime)) reply(`Reply Sticker With Caption *${prefix + command}*`)
                 reply(mess.wait)
-                let media = await KingmdWH.downloadAndSaveMediaMessage(quoted)
+                let media = await BlackQueenmdWH.downloadAndSaveMediaMessage(quoted)
                 let ran = await getRandom('.png')
                 exec(`ffmpeg -i ${media} ${ran}`, (err) => {
                     fs.unlinkSync(media)
                     if (err) reply(err)
                     let buffer = fs.readFileSync(ran)
-                    KingmdWH.sendMessage(m.chat, { image: buffer }, { quoted: m })
+                    BlackQueenmdWH.sendMessage(m.chat, { image: buffer }, { quoted: m })
                     fs.unlinkSync(ran)
                 })
             }
@@ -1282,9 +1282,9 @@ break
                 if (!/webp/.test(mime)) return replay(`Reply Sticker With Caption *${prefix + command}*`)
                 reply(mess.wait)
 		let { webp2mp4File } = require('./lib/uploader')
-                let media = await KingmdWH.downloadAndSaveMediaMessage(quoted)
+                let media = await BlackQueenmdWH.downloadAndSaveMediaMessage(quoted)
                 let webpToMp4 = await webp2mp4File(media)
-                await KingmdWH.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' } }, { quoted: m })
+                await BlackQueenmdWH.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' } }, { quoted: m })
                 await fs.unlinkSync(media)
             }
             break
@@ -1295,7 +1295,7 @@ break
             let media = await quoted.download()
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
-            KingmdWH.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
+            BlackQueenmdWH.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
             }
             break
             case 'tomp3': {
@@ -1306,7 +1306,7 @@ break
             let media = await quoted.download()
             let { toAudio } = require('./lib/converter')
             let audio = await toAudio(media, 'mp4')
-            KingmdWH.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Converted By ${KingmdWH.user.name}.mp3`}, { quoted : m })
+            BlackQueenmdWH.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Converted By ${BlackQueenmdWH.user.name}.mp3`}, { quoted : m })
             }
             break
             case 'tovn': case 'toptt': {
@@ -1316,7 +1316,7 @@ break
             let media = await quoted.download()
             let { toPTT } = require('./lib/converter')
             let audio = await toPTT(media, 'mp4')
-            KingmdWH.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+            BlackQueenmdWH.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
             }
             break
             case 'togif': {
@@ -1324,16 +1324,16 @@ break
                 if (!/webp/.test(mime)) return reply(`Reply Sticker With Caption *${prefix + command}*`)
                 reply(mess.wait)
 		let { webp2mp4File } = require('./lib/uploader')
-                let media = await KingmdWH.downloadAndSaveMediaMessage(quoted)
+                let media = await BlackQueenmdWH.downloadAndSaveMediaMessage(quoted)
                 let webpToMp4 = await webp2mp4File(media)
-                await KingmdWH.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
+                await BlackQueenmdWH.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
                 await fs.unlinkSync(media)
             }
             break
 	        case 'tourl': {
                 reply(mess.wait)
 		        let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
-                let media = await KingmdWH.downloadAndSaveMediaMessage(quoted)
+                let media = await BlackQueenmdWH.downloadAndSaveMediaMessage(quoted)
                 if (/image/.test(mime)) {
                     let anu = await TelegraPh(media)
                     reply(util.format(anu))
@@ -1353,7 +1353,7 @@ break
                 for (let i of search.all) {
                     teks += `🔥 No : ${no++}\n🔥 Type : ${i.type}\n🔥 Video ID : ${i.videoId}\n🔥 Title : ${i.title}\n🔥 Views : ${i.views}\n🔥 Duration : ${i.timestamp}\n🔥 Uploaded On : ${i.ago}\n🔥 Author : ${i.author.name}\n🔥 Url : ${i.url}\n\n─────────────────\n\n`
                 }
-                KingmdWH.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
             }
                 break
         case 'gimage': case 'img': case 'googleimage': {
@@ -1370,11 +1370,11 @@ break
                     caption: `*-------「 GIMAGE SEARCH 」-------*
 🤠 *Query* : ${text}
 🔗 *Media Url* : ${images}`,
-                    footer: KingmdWH.user.name,
+                    footer: BlackQueenmdWH.user.name,
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
         })
         }
         break
@@ -1400,22 +1400,22 @@ break
 🔥 Channel : ${anu.author.url}
 🔥 Description : ${anu.description}
 🔥 Url : ${anu.url}`,
-                    footer: KingmdWH.user.name,
+                    footer: BlackQueenmdWH.user.name,
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
             case 'testcmdking': {
             
-         KingmdWH.sendMessage(m.chat, {text:'1'})
-         KingmdWH.sendMessage(m.chat, {text:'2'})
-         KingmdWH.sendMessage(m.chat, {text:'3'})
-         KingmdWH.sendMessage(m.chat, {text:'4'})
-         KingmdWH.sendMessage(m.chat, {text:'5'})
-         KingmdWH.sendMessage(m.chat, {text:'6'})
-         KingmdWH.sendMessage(m.chat, {text:'7'})
+         BlackQueenmdWH.sendMessage(m.chat, {text:'1'})
+         BlackQueenmdWH.sendMessage(m.chat, {text:'2'})
+         BlackQueenmdWH.sendMessage(m.chat, {text:'3'})
+         BlackQueenmdWH.sendMessage(m.chat, {text:'4'})
+         BlackQueenmdWH.sendMessage(m.chat, {text:'5'})
+         BlackQueenmdWH.sendMessage(m.chat, {text:'6'})
+         BlackQueenmdWH.sendMessage(m.chat, {text:'7'})
                           
                           }
                           break
@@ -1423,14 +1423,14 @@ break
                 if (!text) return reply(`Example : .song lelena`)
                 let yts = require("yt-search")
                 let search = await yts(text)
-                let kingbotsearch = search.videos[0]
+                let BlackQueensearch = search.videos[0]
                 let buttons = [
-                    {buttonId: `hsong ${kingbotsearch.url}`, buttonText: {displayText: '🔥 HIGH QUALITY 🔥'}, type: 1},
-                    {buttonId: `msong  ${kingbotsearch.url}`, buttonText: {displayText: '🎲 MEDIUM QUALITY 🎲'}, type: 1},
-                    {buttonId: `id3`, buttonText: {displayText: '✨ ᴍᴏʀᴇ ᴅᴇᴀᴛᴀɪʟꜱ ✨'+'\n\n\n▣ ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ ➢ '+`${kingbotsearch.description}`+'\n▣ ᴀᴜᴛʜᴏʀ ➢ '+`${kingbotsearch.author.name}`+'\n▣ ᴄʜᴀɴɴᴇʟ ➢ '+`${kingbotsearch.author.url}`}, type: 1}
+                    {buttonId: `hsong ${BlackQueensearch.url}`, buttonText: {displayText: '🔥 HIGH QUALITY 🔥'}, type: 1},
+                    {buttonId: `msong  ${BlackQueensearch.url}`, buttonText: {displayText: '🎲 MEDIUM QUALITY 🎲'}, type: 1},
+                    {buttonId: `id3`, buttonText: {displayText: '✨ ᴍᴏʀᴇ ᴅᴇᴀᴛᴀɪʟꜱ ✨'+'\n\n\n▣ ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ ➢ '+`${BlackQueensearch.description}`+'\n▣ ᴀᴜᴛʜᴏʀ ➢ '+`${BlackQueensearch.author.name}`+'\n▣ ᴄʜᴀɴɴᴇʟ ➢ '+`${BlackQueensearch.author.url}`}, type: 1}
                 ]
                 let buttonMessage = {
-                    image: { url: kingbotsearch.thumbnail },
+                    image: { url: BlackQueensearch.thumbnail },
                     caption: `╭───────────────╮
 │    🔥 ᴋɪɴɢ ʙᴏᴛ - ᴍᴅ ᴠᴇʀꜱɪᴏɴ 🔥 │
 ╰───────────────╯
@@ -1438,13 +1438,13 @@ break
       *📥 𝚂𝙾𝙽𝙶 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝚁 📥*
    
 ╭╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶◉
-│▣ ᴛɪᴛʟᴇ ➢ ${kingbotsearch.title}
+│▣ ᴛɪᴛʟᴇ ➢ ${BlackQueensearch.title}
 │▣ ᴇxᴛ ➢ Search
-│▣ ɪᴅ ➢ ${kingbotsearch.videoId}
-│▣ ᴅᴜʀᴀᴛɪᴏɴ ➢ ${kingbotsearch.timestamp}
-│▣ ᴠɪᴇᴡᴇꜱ ➢ ${kingbotsearch.views}
-│▣ ᴜᴘʟᴏᴀᴅᴇᴅ ᴏɴ ➢ ${kingbotsearch.ago}
-│▣ ᴜʀʟ ➢ ${kingbotsearch.url}
+│▣ ɪᴅ ➢ ${BlackQueensearch.videoId}
+│▣ ᴅᴜʀᴀᴛɪᴏɴ ➢ ${BlackQueensearch.timestamp}
+│▣ ᴠɪᴇᴡᴇꜱ ➢ ${BlackQueensearch.views}
+│▣ ᴜᴘʟᴏᴀᴅᴇᴅ ᴏɴ ➢ ${BlackQueensearch.ago}
+│▣ ᴜʀʟ ➢ ${BlackQueensearch.url}
 │
 │🍁ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ ₂₀₂₂🍁
 ╰╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶╶◉`,
@@ -1452,7 +1452,7 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
                         case 'video':  {
@@ -1486,7 +1486,7 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
             
@@ -1517,9 +1517,9 @@ break
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, '_*I am Searching your song*_ ✨➾🔎', { quoted: m })
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
-                KingmdWH.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, '_*I am Searching your song*_ ✨➾🔎', { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
             }
                        break
 	    case 'msong':{
@@ -1528,8 +1528,8 @@ break
                 let quality = args[1] ? args[1] : '320kbps'
                 let media = await yta(text, quality)
                 if (media.filesize >= 999999) return reply('File Over Limit '+util.format(media))
-                KingmdWH.sendImage(m.chat, media.thumb, `🔥 Title : ${media.title}\n🔥 File Size : ${media.filesizeF}\n🔥 Url : ${isUrl(text)}\n🔥 Ext : MP3\n🔥 Resolution : ${args[1] || '320kbps'}`, m)
-                KingmdWH.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
+                BlackQueenmdWH.sendImage(m.chat, media.thumb, `🔥 Title : ${media.title}\n🔥 File Size : ${media.filesizeF}\n🔥 Url : ${isUrl(text)}\n🔥 Ext : MP3\n🔥 Resolution : ${args[1] || '320kbps'}`, m)
+                BlackQueenmdWH.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
             }
             break
                         case 'mvideo': {
@@ -1538,7 +1538,7 @@ break
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(text, quality)
                 if (media.filesize >= 999999) return reply('File Over Limit '+util.format(media))
-                KingmdWH.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `🔥 Title : ${media.title}\n🔥 File Size : ${media.filesizeF}\n🔥 Url : ${isUrl(text)}\n🔥 Ext : MP3\n🔥 Resolution : ${args[1] || '360p'}` }, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `🔥 Title : ${media.title}\n🔥 File Size : ${media.filesizeF}\n🔥 Url : ${isUrl(text)}\n🔥 Ext : MP3\n🔥 Resolution : ${args[1] || '360p'}` }, { quoted: m })
             }
             break
                         case 'hvideo': {
@@ -1547,18 +1547,18 @@ break
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(text, quality)
                 if (media.filesize >= 999999) return reply('File Over Limit '+util.format(media))
-                KingmdWH.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `🔥 Title : ${media.title}\n🔥 File Size : ${media.filesizeF}\n🔥 Url : ${isUrl(text)}\n🔥 Ext : MP3\n🔥 Resolution : ${args[1] || '480p'}` }, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `🔥 Title : ${media.title}\n🔥 File Size : ${media.filesizeF}\n🔥 Url : ${isUrl(text)}\n🔥 Ext : MP3\n🔥 Resolution : ${args[1] || '480p'}` }, { quoted: m })
             }
 	   break
             case 'public': {
                 if (!isCreator) return replay(`${mess.owner}`)
-                KingmdWH.public = true
+                BlackQueenmdWH.public = true
                 reply('Successful Change To Public Usage')
             }
             break
             case 'private': {
                 if (!isCreator) return replay(`${mess.owner}`)
-                KingmdWH.public = false
+                BlackQueenmdWH.public = false
                 reply('Successful Change To Self Usage')
             }
             break
@@ -1627,25 +1627,25 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             }
             break
             case 'owner': case 'creator': {
-                KingmdWH.sendContact(m.chat, global.owner, m)
+                BlackQueenmdWH.sendContact(m.chat, global.owner, m)
             }
 					break
 				case 'waifu': case 'loli':
 					reply(mess.wait)
 					axios.get(`https://api.waifu.pics/sfw/waifu`)
 					.then(({data}) => {
-					KingmdWH.sendImage(m.chat, data.url, mess.success, m)
+					BlackQueenmdWH.sendImage(m.chat, data.url, mess.success, m)
 					})
 					break
                     case 'bug': case 'report': {
                     	if(!text) return reply(`Enter The Bug\n\nExample: ${command} Menu Error`)
-                    	KingmdWH.sendMessage(`94729352830@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
+                    	BlackQueenmdWH.sendMessage(`94729352830@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
 Report Message: ${text}` })
 reply(`Successfully Reported To The Owner\n\nPlease Make Sure The Bug Is Valid, If You Play With This, Use This Feature Again And Again For No Reason, You Will Be Blocked For Sure !`)
                     }
                     break
                     case 'kingbug': {
-                    	KingmdWH.sendMessage(`94729352830@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
+                    	BlackQueenmdWH.sendMessage(`94729352830@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
 Report Message: ${text}` })
 
 reply('Welcome !')
@@ -1653,9 +1653,9 @@ reply('Welcome !')
                     break
                      case 'alive': {
                      
-          KingmdWH.sendMessage(from, { react: { text: `${global.reactmoji}`, key: m.key }})
+          BlackQueenmdWH.sendMessage(from, { react: { text: `${global.reactmoji}`, key: m.key }})
                      
-Kingbotalive = `──┈┈┈┄┄╌╌╌╌┄┄┈┈┈──
+BlackQueenalive = `──┈┈┈┄┄╌╌╌╌┄┄┈┈┈──
                    ✦𝙷𝙸 𝚃𝙷𝙴𝚁𝙴,࿐
             ꧁°•ɪ ᴀᴍ ᴀʟɪᴠᴇ ɴᴏᴡ•°꧂
 ──┈┈┈┄┄╌╌╌╌┄┄┈┈┈──
@@ -1680,23 +1680,23 @@ Kingbotalive = `──┈┈┈┄┄╌╌╌╌┄┄┈┈┈──
            let buttons = [
                {buttonId: `command`, buttonText: {displayText: '🎭 LIST MENU 🎭'}, type: 1},
                {buttonId: `ping`, buttonText: {displayText: '🎲 SYSTEM STATUS 🎲'}, type: 1},
-               {buttonId: `kingbotinfo`, buttonText: {displayText: '🍁 BOT SYSTEM 🍁️'}, type: 1},
+               {buttonId: `BlackQueeninfo`, buttonText: {displayText: '🍁 BOT SYSTEM 🍁️'}, type: 1},
                 ]
                 
                 let buttonMessage = {
                     image: fs.readFileSync('./src/alivelogo.jpg'),
-                    caption: Kingbotalive,
+                    caption: BlackQueenalive,
                     footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
                     break
-                    case 'kingbotinfo': {
+                    case 'BlackQueeninfo': {
 timestampe = speed();
 latensie = speed() - timestampe
-Kingbotinfo = `
+BlackQueeninfo = `
 ┌────────────────❖
 │👋 ʜɪ ${pushname},
 │✦ ɪ ᴀᴍ [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] 🔥
@@ -1720,16 +1720,16 @@ Kingbotinfo = `
                 ]
                 let buttonMessage = {
                     image: fs.readFileSync('./src/bot.jpg'),
-                    caption: Kingbotinfo,
+                    caption: BlackQueeninfo,
                     footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
                     break
                      case 'bot': {
-kingbotcmd = `╹ 𓄂᳆⃞⃚😈×͜×[🇱🇰㉿𝗜𝗡𝗚 𝗕𝗢𝗧🤘] ╹
+BlackQueencmd = `╹ 𓄂᳆⃞⃚😈×͜×[🇱🇰㉿𝗜𝗡𝗚 𝗕𝗢𝗧🤘] ╹
 ╹❝𝗦𝗥𝗜 𝗟𝗔𝗡𝗞𝗔 𝗕𝗘𝗦𝗧 𝗪𝗔 𝗕𝗢𝗧❞╹
 
 ╭────────────────◉
@@ -1776,12 +1776,12 @@ let buttons = [
                 ]
                 let buttonMessage = {
                     image: fs.readFileSync('./src/bot.jpg'),
-                    caption: kingbotcmd,
+                    caption: BlackQueencmd,
                     footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
 break
                   case 'list': case 'menu': case 'panel': case 'help' :{
@@ -1796,7 +1796,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                         hydratedTemplate: {
                             hydratedContentText: kingmenu,
                             locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./KINGMedia/logo.jpeg')}, 
+                            jpegThumbnail: fs.readFileSync('./BlackQueenMedia/logo.jpeg')}, 
                             hydratedFooterText: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                             hydratedButtons: [{
                                 urlButton: {
@@ -1827,7 +1827,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                         }
                     }
                 }), { userJid: m.chat })
-                KingmdWH.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                BlackQueenmdWH.relayMessage(m.chat, template.message, { messageId: template.key.id })
                 }
             break
            case 'verify': {
@@ -1868,7 +1868,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                         hydratedTemplate: {
                             hydratedContentText: Teammsg,
                             locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./KINGMedia/logo.jpeg')}, 
+                            jpegThumbnail: fs.readFileSync('./BlackQueenMedia/logo.jpeg')}, 
                             hydratedFooterText: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                             hydratedButtons: [{
                                 urlButton: {
@@ -1888,7 +1888,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                                 }, {
                                 quickReplyButton: {
                                     displayText: '🍁 BOT SYSTEM 🍁',
-                                    id: `${prefix}kingbotinfo`
+                                    id: `${prefix}BlackQueeninfo`
                                 }
                                 }, {
                                 quickReplyButton: {
@@ -1899,17 +1899,17 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                         }
                     }
                 }), { userJid: m.chat })
-                KingmdWH.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                BlackQueenmdWH.relayMessage(m.chat, template.message, { messageId: template.key.id })
 	                   }
 	       case 'kingjoinsupportgroupnowok': {
 	      
-                await KingmdWH.groupAcceptInvite('https://chat.whatsapp.com/FknPAOHRdBdBlAPLyfIwLG').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+                await BlackQueenmdWH.groupAcceptInvite('https://chat.whatsapp.com/FknPAOHRdBdBlAPLyfIwLG').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
                 replay('දැන් [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] official support group එකට join වෙයි...')
 	                            }
                       break
                                 case 'command': {
                 
-Kingbotmenu=`
+BlackQueenmenu=`
 ┏━━━━━━━━━━━━━━━━━
 ┣ 𝙸 𝙰𝙼 [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘]
 ┣🎭𝙰 𝚆𝙷𝙰𝚃𝚂𝙰𝙿𝙿 𝚄𝚂𝙴𝚁 𝙱𝙾𝚃🎭
@@ -1921,7 +1921,7 @@ Kingbotmenu=`
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
                     title: `👋ʜɪ ᴅᴇᴀʀ ${pushname}`,
-                    description: Kingbotmenu,
+                    description: BlackQueenmenu,
                     buttonText: "ᴛᴀᴘ ʜᴇʀᴇ ᴛᴏ ꜱᴇʟᴇᴄᴛ ᴍᴇɴᴜ",
                     footerText: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                     listType: "SINGLE_SELECT",
@@ -2014,12 +2014,12 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
           listType: 1
                 }
             }), {})
-            KingmdWH.relayMessage(m.chat, template.message, { messageId: template.key.id })
+            BlackQueenmdWH.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
             break
             case 'ehi': {
             
-Kingbotehimenu = `🔥ᏦᏆΝᏀ ᏴϴͲ ᎬᎻᏆ ᏟϴᏞᏞᎬᏟͲᏆϴΝ🔥
+BlackQueenehimenu = `🔥ᏦᏆΝᏀ ᏴϴͲ ᎬᎻᏆ ᏟϴᏞᏞᎬᏟͲᏆϴΝ🔥
 
 🛑 ᴘᴏᴡᴇʀᴇᴅ ʙʏ :: κιиg οƒƒιϲιαℓ τєαм
 
@@ -2075,12 +2075,12 @@ Kingbotehimenu = `🔥ᏦᏆΝᏀ ᏴϴͲ ᎬᎻᏆ ᏟϴᏞᏞᎬᏟͲᏆϴΝ�
                 ]
                 let buttonMessage = {
                     image: fs.readFileSync('./src/ehilogo.jpg'),
-                    caption: Kingbotehimenu,
+                    caption: BlackQueenehimenu,
                     footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             
             
@@ -2088,7 +2088,7 @@ Kingbotehimenu = `🔥ᏦᏆΝᏀ ᏴϴͲ ᎬᎻᏆ ᏟϴᏞᏞᎬᏟͲᏆϴΝ�
             
             case 'eapk': {         
 
-kingbotehiapkmenu = `🔥ᏦᏆΝᏀ ᏴϴͲ ᎬᎻᏆ ᎪᏢᏦ ᏟϴᏞᏞᎬᏟͲᏆϴΝ🔥
+BlackQueenehiapkmenu = `🔥ᏦᏆΝᏀ ᏴϴͲ ᎬᎻᏆ ᎪᏢᏦ ᏟϴᏞᏞᎬᏟͲᏆϴΝ🔥
 
 🛑 ᴘᴏᴡᴇʀᴇᴅ ʙʏ :::  [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘]™
 
@@ -2111,13 +2111,13 @@ kingbotehiapkmenu = `🔥ᏦᏆΝᏀ ᏴϴͲ ᎬᎻᏆ ᎪᏢᏦ ᏟϴᏞᏞᎬ�
                {buttonId: 'alive', buttonText: {displayText: '🎲 BOT STATUS 🎲'}, type: 1}
                      ]
                 let buttonMessage = {
-                    image: fs.readFileSync('./KINGMedia/logo.jpeg'),
-                    caption: kingbotehiapkmenu,
+                    image: fs.readFileSync('./BlackQueenMedia/logo.jpeg'),
+                    caption: BlackQueenehiapkmenu,
                     footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
                       break
                       
@@ -2185,7 +2185,7 @@ Ex - ( Dialog zoom *Rs- 165  )
            
            case 'shortmenu': {
 
-kingbotshortmenu = `
+BlackQueenshortmenu = `
 🎭─────「⚙」─────🎭
           ✨ ᴋɪɴɢ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅꜱ✨
 🎭─────「⚙」─────🎭
@@ -2238,22 +2238,22 @@ kingbotshortmenu = `
              {buttonId: `owner`, buttonText: {displayText: '🇱🇰 OWNER 🇱🇰️'}, type: 1}
                          ]
                 let buttonMessage = {
-                    image: fs.readFileSync('./KINGMedia/logo.jpeg'),
-                    caption: kingbotshortmenu,
+                    image: fs.readFileSync('./BlackQueenMedia/logo.jpeg'),
+                    caption: BlackQueenshortmenu,
                     footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
                    break
                     case 'donasi': case 'donate': case 'sewabot': case 'sewa': {
-                KingmdWH.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/c15f725add0381fb69c4b.jpg' }, caption: `*Hi Bro ${m.pushName}*\nDonation section is currently down🥲 , I know you are happy but me 🥲💔\n` }, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/c15f725add0381fb69c4b.jpg' }, caption: `*Hi Bro ${m.pushName}*\nDonation section is currently down🥲 , I know you are happy but me 🥲💔\n` }, { quoted: m })
             }
             break
                 case 'sc': case 'script': case 'git': case 'github': {
     
-Kingbotgitlink=`*🎭 [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] created by ШHłТΞ HΛϾКΞЯS 🎭*
+BlackQueengitlink=`*🎭 [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] created by ШHłТΞ HΛϾКΞЯS 🎭*
 
 *🍁 Contact Owner :: https://wa.me/94729352830?text=HI......%20𝚱𝚰𝚴Ｇ%20𝛃𝚯𝚪%20OWNER࿐*
 
@@ -2269,17 +2269,17 @@ Kingbotgitlink=`*🎭 [🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] created by ШH�
 
 let buttons = [
                {buttonId: `shortmenu`, buttonText: {displayText: '🍁 SHORT MENU 🍁'}, type: 1},
-               {buttonId: `kingbotinfo`, buttonText: {displayText: '〽 ️BOT INFO 〽️'}, type: 1},
+               {buttonId: `BlackQueeninfo`, buttonText: {displayText: '〽 ️BOT INFO 〽️'}, type: 1},
                {buttonId: `ping`, buttonText: {displayText: '🎲 SYSTEM STATUS 🎲'}, type: 1}
                 ]
                 let buttonMessage = {
                     image: fs.readFileSync('./src/bot.jpg'),
-                    caption: Kingbotgitlink,
+                    caption: BlackQueengitlink,
                     footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
                     buttons: buttons,
                     headerType: 4
                 }
-                KingmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
+                BlackQueenmdWH.sendMessage(m.chat, buttonMessage, { quoted: m })
            }
             break
 case 'allmenu': {
@@ -2369,7 +2369,7 @@ case 'allmenu': {
                         hydratedTemplate: {
                             hydratedContentText: anu,
                             locationMessage: {
-                            jpegThumbnail: fs.readFileSync('./KINGMedia/logo.jpeg')},
+                            jpegThumbnail: fs.readFileSync('./BlackQueenMedia/logo.jpeg')},
                             hydratedFooterText: `${pushname}`,
                             hydratedButtons: [{
                             urlButton: {
@@ -2395,12 +2395,12 @@ case 'allmenu': {
                         }
                     }
                 }), { userJid: m.chat })
-                KingmdWH.relayMessage(m.chat, template.message, { messageId: template.key.id })
+                BlackQueenmdWH.relayMessage(m.chat, template.message, { messageId: template.key.id })
             }
 break
 case 'mainmenu':
 var unicorn = await getBuffer(picak+'Main Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 MAIN 」
 ┃╠ ${prefix}alive
@@ -2422,7 +2422,7 @@ break
 
 case 'grupmenu': case 'groupmenu':
 var unicorn = await getBuffer(picak+'Group Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 GROUP 」	        
 ┃╠${prefix}grouplink
@@ -2450,7 +2450,7 @@ await KingmdWH.send5ButImg(from, `` + '' + ' ', `
 break
 case 'ownermenu':
 var unicorn = await getBuffer(picak+'Owner Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 OWNER 」	        
 ┃╠${prefix}grouplink
@@ -2478,7 +2478,7 @@ await KingmdWH.send5ButImg(from, `` + '' + ' ', `
 break
 case 'downloadmenu':
 var unicorn = await getBuffer(picak+'Downloader Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 DOWNLOADER 」	        
 ┃╠${prefix}ytmp3 [url|quality]
@@ -2493,7 +2493,7 @@ await KingmdWH.send5ButImg(from, `` + '' + ' ', `
 break
 case 'searchmenu':
 var unicorn = await getBuffer(picak+'Search Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 SEARCHER 」	        
 ┃╠${prefix}play [query]
@@ -2512,7 +2512,7 @@ await KingmdWH.send5ButImg(from, `` + '' + ' ', `
 break
 case 'randommenu':
 var unicorn = await getBuffer(picak+'Random Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 RANDOM 」	        
 ┃╠${prefix}coffee
@@ -2523,7 +2523,7 @@ await KingmdWH.send5ButImg(from, `` + '' + ' ', `
 break
 case 'textpromenu':
 var unicorn = await getBuffer(picak+'Text Pro Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 TEXT PRO 」	        
 ┃╠ ${prefix}3dchristmas [txt]
@@ -2562,7 +2562,7 @@ await KingmdWH.send5ButImg(from, `` + '' + ' ', `
 break
 case 'convertmenu':
 var unicorn = await getBuffer(picak+'Converter Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 CONVERTER 」	        
 ┃╠ ${prefix}toimage [reply stick]
@@ -2581,7 +2581,7 @@ await KingmdWH.send5ButImg(from, `` + '' + ' ', `
 break
 case 'voicechangermenu':
 var unicorn = await getBuffer(picak+'Voice Changer Menu')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 VOICE CHANGER 」	        
 ┃╠${prefix}bass [reply aud]
@@ -2600,7 +2600,7 @@ await KingmdWH.send5ButImg(from, `` + '' + ' ', `
 break
 case 'thanksto': case 'tqto': case 'tqtt':
 var unicorn = await getBuffer(picak+'Developer')
-await KingmdWH.send5ButImg(from, `` + '' + ' ', `
+await BlackQueenmdWH.send5ButImg(from, `` + '' + ' ', `
 🎭𝙸 𝙰𝙼 𝙺𝙸𝙽𝙶 𝙱𝙾𝚃 𝙼𝙳 𝚅𝙴𝚁𝚂𝙸𝙾𝙽🎭
 
 තව ගැහුවෙ නෑ.
@@ -2667,7 +2667,7 @@ break
 		    if (m.isBaileys) return
 		    let msgs = global.db.data.database
 		    if (!(budy.toLowerCase() in msgs)) return
-		    KingmdWH.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
+		    BlackQueenmdWH.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
 		}
         }
         
