@@ -1,6 +1,6 @@
 {
-  "name": "BLACK QUEEN",
-  "description": "𝐁𝐋𝐀𝐂𝐊 𝐐𝐔𝐄𝐄𝐍 | By: ʙʟᴀᴄᴋ ǫᴜᴇᴇɴᵀᴹ | 𝔸𝕃ℙℍ𝔸 ℕ𝕀ℕ𝕁𝔸",
+  "name": "BLACK-QUEEN",
+  "description": "whatsapp md bot build with nodejs",
   "repository": "https://github.com/BLACKQUEENTEAM/BLACK-QUEEN",
   "logo": "https://telegra.ph/file/a510d39d323a889474180.jpg",
   "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
@@ -11,9 +11,6 @@
     {
       "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
     },
-    {
-            "url": "https://github.com/yespark/heroku-imagemagick-buildpack"
-        },
     {
       "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
     }
